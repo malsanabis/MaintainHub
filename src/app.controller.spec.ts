@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { NotFoundException } from '@nestjs/common';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -15,8 +16,10 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('GET / should return 404', async () => {
+      const index = () => appController.index();
+
+      expect(index).toThrow(new NotFoundException('Cannot GET /'));
     });
   });
 });
