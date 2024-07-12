@@ -19,7 +19,7 @@ model User {
   email    String @unique
   password String
 
-  uuid String @default(uuid())
+  uuid String @unique @default(uuid())
 
   firstName String?
   lastName  String?
@@ -36,7 +36,7 @@ model Product {
   name String
   code String?
 
-  uuid String @default(uuid())
+  uuid String @unique @default(uuid())
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
