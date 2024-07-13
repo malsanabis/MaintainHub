@@ -5,6 +5,7 @@ import { ProductsModule } from './products/products.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { SearchModule } from './search/search.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { SearchModule } from './search/search.module';
     ProductsModule,
     PrismaModule,
     SearchModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
