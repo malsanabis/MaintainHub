@@ -1,23 +1,26 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ProductsService } from './products.service';
-import { ConfigModule } from '@nestjs/config';
-import { PrismaModule } from 'src/prisma/prisma.module';
+import { PrismaService } from '../prisma/prisma.service';
 
 describe('ProductsService', () => {
   let service: ProductsService;
+  let prismaService: PrismaService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ProductsService],
-      imports: [
-        ConfigModule.forRoot({
-          isGlobal: true,
-        }),
-        PrismaModule,
+      providers: [
+        ProductsService,
+        {
+          provide: PrismaService,
+          useValue: {
+            search: jest.fn(),
+          },
+        },
       ],
     }).compile();
 
     service = module.get<ProductsService>(ProductsService);
+    prismaService = module.get<PrismaService>(PrismaService);
   });
 
   it('should be defined', () => {
