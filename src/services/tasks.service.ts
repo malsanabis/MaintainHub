@@ -14,6 +14,7 @@ export class TasksService {
     async createTask(data: Prisma.TaskCreateInput): Promise<Task> {
         return this.prisma.task.create({ data });
     }
+
     async getTasks(): Promise<Task[]> {
         return this.prisma.task.findMany();
     }

@@ -11,6 +11,15 @@ export class UserService {
             where: userWhereUniqueInput,
         });
     }
+    async signIn(email: string, password: string): Promise<User | null> {
+        const user = await this.prisma.user.findUnique({
+            where: { email },
+        });
+        if (user && user.password === password) {
+            return user;
+        }
+        return null;
+    }
     async getUsers(): Promise<User[]> {
         return this.prisma.user.findMany();
     }

@@ -10,7 +10,15 @@ import { UserService } from 'src/services/user.service';
 @Controller('users')
 export class UserController {
     constructor(private readonly userService: UserService) { }
-
+    @Post('signin')
+    @HttpCode(200)
+    async signIn(@Body() userData: { email: string; password: string }): Promise<User> {
+        const user = await this.userService.signIn(userData.email, userData.password);
+        if (!user) {
+            throw new NotFoundException('Invalid email or password');
+        }
+        return user;
+    }
     @Post()
     @HttpCode(201)
     async createUser(@Body() userData: { name?: string; email: string; password: string }): Promise<User> {
