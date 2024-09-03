@@ -1,3 +1,11 @@
+# How to run the project
+
+1. Clone the repository
+2. Run `npm ci`
+3. Run Nest backend`npm run start:dev`
+
+
+
 # Maintenance Registration System
 
 ## Introduction
