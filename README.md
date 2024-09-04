@@ -2,7 +2,7 @@
 
 1. Clone the repository
 2. Run `npm ci`
-3. Run Nest backend`npm run start:dev`
+3. Run Nest backend `npm run start:dev`
 
 
 
