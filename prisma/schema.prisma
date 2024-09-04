@@ -9,7 +9,7 @@ datasource db {
 
 model User {
   id        Int       @id @default(autoincrement())
-  email     String    @unique
+  username     String    @unique
   password  String
   uuid      String    @default(uuid())
   firstName String?
@@ -22,27 +22,3 @@ model User {
   @@map("users")
 }
 
-model Task {
-  id          Int        @id @default(autoincrement())
-  description String
-  priority    Priority
-  deadline    DateTime?
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  status      TaskStatus @default(TO_DO)
-  userId      Int
-  user        User       @relation("UserTasks", fields: [userId], references: [id])
-
-  @@map("tasks")
-}
-
-enum Priority {
-  LOW
-  MEDIUM
-  HIGH
-}
-enum TaskStatus {
-  TO_DO
-  IN_PROGRESS
-  DONE
-}
