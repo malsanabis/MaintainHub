@@ -1,8 +1,10 @@
 # How to run the project
 
 1. Clone the repository
-2. Run `npm ci`
-3. Run Nest backend `npm run start:dev`
+2. Run `npm ci`'
+3. Setup SQL database and .env file
+3. Run `npx prisma generate` or `prisma generate`
+4. Run Nest backend `npm run start:dev`
 
 
 

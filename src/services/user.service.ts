@@ -11,9 +11,9 @@ export class UserService {
             where: userWhereUniqueInput,
         });
     }
-    async signIn(email: string, password: string): Promise<User | null> {
+    async signIn(username: string, password: string): Promise<User | null> {
         const user = await this.prisma.user.findUnique({
-            where: { email },
+            where: { username }
         });
         if (user && user.password === password) {
             return user;

@@ -12,16 +12,16 @@ export class UserController {
     constructor(private readonly userService: UserService) { }
     @Post('signin')
     @HttpCode(200)
-    async signIn(@Body() userData: { email: string; password: string }): Promise<User> {
-        const user = await this.userService.signIn(userData.email, userData.password);
+    async signIn(@Body() userData: { username: string; password: string }): Promise<User> {
+        const user = await this.userService.signIn(userData.username, userData.password);
         if (!user) {
-            throw new NotFoundException('Invalid email or password');
+            throw new NotFoundException('Invalid username or password');
         }
         return user;
     }
     @Post()
     @HttpCode(201)
-    async createUser(@Body() userData: { name?: string; email: string; password: string }): Promise<User> {
+    async createUser(@Body() userData: { username: string; password: string }): Promise<User> {
         return this.userService.createUser(userData);
     }
 
@@ -42,7 +42,7 @@ export class UserController {
     @Put(':id')
     async updateUser(
         @Param('id') id: string,
-        @Body() userData: { name?: string; email?: string; password?: string }
+        @Body() userData: { username?: string; password?: string }
     ): Promise<User> {
         return this.userService.updateUser({
             where: { id: Number(id) },
